@@ -1,12 +1,16 @@
 import express from 'express';
+import routes from './routes';
+
+const PORT = 4002;
 
 const app = express();
-const port = 4002;
+
+app.use('/api', routes);
 
 app.get('/', (req, res) => {
-  res.json({ msg: 'hello' });
+  res.json({ msg: 'TANGO CHALLENGE' });
 });
 
-app.listen(port, () => {
-  console.log(`Tango api-challenge listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Tango api-challenge listening on port ${PORT}`);
 });
