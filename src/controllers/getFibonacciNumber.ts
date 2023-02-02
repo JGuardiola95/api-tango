@@ -20,7 +20,6 @@ export const getFibonacciNumber = (req: fibonacciRequest, res: Response, next: N
 
     const fibonacciNumber = calculateFibonacciNumber(Number(number));
 
-    throw new Error();
     res.json({ fibonacciNumber });
   } catch (error) {
     next(error);
