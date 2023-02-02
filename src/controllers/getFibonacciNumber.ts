@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import calculateFibonacciNumber from '../utils/calculateFibonacciNumber';
 
 interface fibonacciRequest extends Request {
@@ -6,7 +6,7 @@ interface fibonacciRequest extends Request {
     number: string;
   };
 }
-export const getFibonacciNumber = (req: fibonacciRequest, res: Response) => {
+export const getFibonacciNumber = (req: fibonacciRequest, res: Response, next: NextFunction) => {
   try {
     const { number } = req.params;
 
@@ -20,9 +20,9 @@ export const getFibonacciNumber = (req: fibonacciRequest, res: Response) => {
 
     const fibonacciNumber = calculateFibonacciNumber(Number(number));
 
+    throw new Error();
     res.json({ fibonacciNumber });
   } catch (error) {
-    const errorMessage = (error as Error).message || 'Something went wrong';
-    throw new Error(errorMessage);
+    next(error);
   }
 };
