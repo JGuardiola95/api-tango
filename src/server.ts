@@ -5,7 +5,7 @@ import cors from 'cors';
 
 const PORT = 80;
 
-const app = express();
+export const app = express();
 
 app.use(cors());
 
@@ -17,6 +17,6 @@ app.get('/', (req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+export const server = app.listen(PORT, () => {
   console.log(`Tango api-challenge listening on port ${PORT}`);
 });
